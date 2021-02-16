@@ -1,33 +1,44 @@
 package com.hemebiotech.analytics;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 
-/**
- * Starting class of application.
- * Read file of symptoms and write the result in output file.
- * Shows ending message when output file is completed otherwise any error information. 
- * 
- * @author psin
- * @version 1.0
- *
- */
 public class AnalyticsCounter {
-	private static List<String> symptoms = new ArrayList<String>();
-	public static final String PATH_INPUT_FILE = "symptoms.txt";
-	public static final String PATH_OUTPUT_FILE = "results.out";
-
+	private static int headacheCount = 0;	
+	private static int rashCount = 0;		
+	private static int pupilCount = 0;		
+	
 	public static void main(String args[]) throws Exception {
+		BufferedReader reader = new BufferedReader (new FileReader("symptoms.txt"));
+		String line = reader.readLine();
 
-		// Init
-		WorkSymptomOnFile worker = new WorkSymptomOnFile();
-		worker.setInputFilePath(PATH_INPUT_FILE);
-		worker.setOutputFilePath(PATH_OUTPUT_FILE);
+		while (line != null) {
+			System.out.println("symptom from file: " + line);
+			if (line.equals("headache")) {
+				headacheCount++;
+				System.out.println("number of headaches: " + headacheCount);
+			}
+			else if (line.equals("rash")) {
+				rashCount++;
+				System.out.println("number of rashCount: " + rashCount);
 
-		symptoms = worker.readSymptomDataFromFile();
-		worker.writeSymptomDataToFile(symptoms);
+			}
+			else if (line.contains("pupils")) {
+				pupilCount++;
+				System.out.println("number of pupilCount: " + pupilCount);
 
-		// End
-		System.out.println("Fin de programme: fichier " + worker.getOutputFilePath() + " enregistré.");
+			}
+
+			line = reader.readLine();	// get another symptom
+		}
+		reader.close();
+		
+		// next generate output
+		FileWriter writer = new FileWriter ("result.out");
+		writer.write("headache: " + headacheCount + "\n");
+		writer.write("rash: " + rashCount + "\n");
+		writer.write("dialated pupils: " + pupilCount + "\n");
+		writer.close();
 	}
 }
