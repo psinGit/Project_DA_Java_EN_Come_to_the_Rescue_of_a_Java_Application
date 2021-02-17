@@ -64,7 +64,7 @@ public class ProcessSymptomsList implements ISymptomsFileAccess {
 	 *  if file doesn't exist or any error occurs, a message is printed out.
 	 * 
 	 * @return a list of string corresponding to the raw list of symptoms.
-	 * @see ISymptomReader
+	 * @see ISymptomsFileAccess
 	 */
 	@Override
 	public List<String> readSymptomDataFromFile() {
@@ -95,7 +95,7 @@ public class ProcessSymptomsList implements ISymptomsFileAccess {
 	 * Each line shows name and count number of the symptom.
 
 	 * @param symptoms raw list of symptoms.
-	 * @see ISymptomWriter
+	 * @see ISymptomsFileAccess
 	 * 
 	 */
 	@Override
