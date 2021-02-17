@@ -10,8 +10,10 @@ import java.util.List;
  * strings, that may contain many duplications. The implementation does not need
  * to order the list.
  * 
- * .Write Symptoms list : write computed list of symptoms ordered by name.
+ * .Write Symptoms list : write computed list of symptoms ordered by name. Each
+ * line will define the name of the symptom and its number of occurrence.
  */
+
 public interface ISymptomsFileAccess {
 
 	/**
@@ -24,9 +26,7 @@ public interface ISymptomsFileAccess {
 
 	/**
 	 * 
-	 * @param symptoms the list of symptoms to be compiled will start with header
-	 *                 followed by ordered list of symptoms. Each line will describe
-	 *                 the name of the symptom and its count number.
+	 * @param symptoms the raw list of symptoms to be compiled.
 	 *
 	 */
 	void writeSymptomDataToFile(List<String> symptoms);
